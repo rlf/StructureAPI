@@ -1,0 +1,12 @@
+name: StructureAPI
+main: dk.lockfuglsang.minecraft.structureapi.StructureApiPlugin
+version: ${project.version}
+description: Bukkit Structure API v${gitTag}-${buildNumber}
+author: R4zorax
+load: STARTUP
+api-version: 1.13
+
+commands:
+  structure:
+    description: 'StructureAPI Commands'
+

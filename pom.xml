@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.rlf</groupId>
+    <artifactId>StructureAPI</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>Structure-API</module>
+        <module>Structure-API-Plugin</module>
+    </modules>
+    <name>Bukkit Structure API</name>
+
+    <properties>
+        <bukkit-utils.version>1.23-SNAPSHOT</bukkit-utils.version>
+        <po-utils.version>1.2</po-utils.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <finalName>${project.artifactId}</finalName>
+        <!-- necessary for intellij to function -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+
+    <scm>
+        <connection>scm:git:git://github.com/rlf/StructureAPI.git</connection>
+        <developerConnection>scm:git:git://github.com/rlf/StructureAPI.git</developerConnection>
+        <url>https://github.com/rlf/StructureAPI.git</url>
+    </scm>
+
+    <build>
+        <finalName>${finalName}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+	<profiles>
+		<profile>
+            <id>1.13</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency> <!-- Bukkit implementation -->
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                    <version>1.13-R0.1-SNAPSHOT</version>
+                    <optional>true</optional>
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>1.12</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency> <!-- Bukkit implementation -->
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                    <version>1.12.2-R0.1-SNAPSHOT</version>
+                    <optional>true</optional>
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+	</profiles>
+    <repositories>
+        <repository>
+            <id>AWE-mvn-repo</id>
+            <url>https://raw.github.com/SBPrime/AsyncWorldEdit-API/maven-artifact/</url>
+        </repository>
+        <repository>
+            <id>gettext-commons-mvn-repo</id>
+            <url>https://raw.github.com/rlf/gettext-commons/mvn-repo/</url>
+        </repository>
+        <repository>
+            <id>spigotmc.org</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/public</url>
+        </repository>
+        <repository>
+            <id>bstats-repo</id>
+            <url>http://repo.bstats.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <!-- Our repo is last - so we can put in fallback artifacts when the other repos are down -->
+            <id>rlf-mvn-repo</id>
+            <url>https://raw.github.com/rlf/mvn-repo/master/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>rlf-mvn-repo</id>
+            <url>https://raw.github.com/rlf/mvn-repo/master/</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>dk.lockfuglsang.minecraft</groupId>
+                <artifactId>bukkit-utils</artifactId>
+                <version>${bukkit-utils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dk.lockfuglsang.minecraft</groupId>
+                <artifactId>bukkit-utils</artifactId>
+                <version>${bukkit-utils.version}</version>
+                <scope>test</scope>
+                <classifier>tests</classifier>
+            </dependency>
+            <dependency>
+                <groupId>dk.lockfuglsang.minecraft</groupId>
+                <artifactId>po-utils</artifactId>
+                <version>${po-utils.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
