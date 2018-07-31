@@ -9,7 +9,7 @@ public class StructureApiPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getCommand("structure").setExecutor(new StructureCommand());
+        getCommand("structure").setExecutor(new StructureCommand(this, () -> getAPI()));
     }
 
     @Override
@@ -20,5 +20,9 @@ public class StructureApiPlugin extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         return super.onCommand(sender, command, label, args);
+    }
+
+    public StructureApi getAPI() {
+        return StructureUtil.getAPI();
     }
 }

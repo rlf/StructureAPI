@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>StructureAPI</artifactId>
-        <groupId>com.github.rlf</groupId>
+        <groupId>dk.lockfuglsang.minecraft</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -12,6 +12,7 @@
     <artifactId>Structure-API-Plugin</artifactId>
 
     <build>
+        <finalName>StructureAPI</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -57,27 +58,6 @@
                             </replacements>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>cleanup-po-files</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>replace</goal>
-                        </goals>
-                        <configuration>
-                            <basedir>${basedir}/src/main/po</basedir>
-                            <filesToInclude>*.po, *.pot</filesToInclude>
-                            <replacements>
-                                <replacement>
-                                    <token>#: .*\n</token>
-                                    <value/>
-                                </replacement>
-                                <replacement>
-                                    <token>"POT-Creation-Date:.*\n</token>
-                                    <value/>
-                                </replacement>
-                            </replacements>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -117,7 +97,74 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <minimizeJar>true</minimizeJar>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.bstats:*</include>
+                                    <include>dk.lockfuglsang.minecraft:bukkit-utils</include>
+                                    <include>dk.lockfuglsang.minecraft:po-utils</include>
+                                    <include>dk.lockfuglsang.minecraft:Structure-API</include>
+                                </includes>
+                            </artifactSet>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <shadedPattern>dk.lockfuglsang.minecraft.structureapi.metrics</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>dk.lockfuglsang.minecraft.command</pattern>
+                                    <shadedPattern>dk.lockfuglsang.minecraft.structureapi.commands</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>dk.lockfuglsang.minecraft.po</pattern>
+                                    <shadedPattern>dk.lockfuglsang.minecraft.structureapi.po</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>*.yml</include>
+                    <include>README.md</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.nbt</include>
+                </includes>
+            </resource>
+            <resource>
+                <targetPath>.</targetPath>
+                <directory>${basedir}</directory>
+                <includes>
+                    <include>README.md</include>
+                    <include>LICENSE.txt</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
     <dependencies>
         <dependency>
@@ -127,6 +174,12 @@
         <dependency>
             <groupId>dk.lockfuglsang.minecraft</groupId>
             <artifactId>po-utils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dk.lockfuglsang.minecraft</groupId>
+            <artifactId>Structure-API</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
