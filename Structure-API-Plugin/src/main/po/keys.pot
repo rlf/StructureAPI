@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#, java-format
+msgid "§eYou do not have access (§4{0}§e)"
+msgstr ""
+
+#, java-format
+msgid "§eInvalid command: {0}"
+msgstr ""
+
+#, java-format
+msgid "§7Usage: {0}"
+msgstr ""
+
+#, java-format
+msgid "§7Use §3/{0} ? {1}§7 to display next page\n"
+msgstr ""
+
+#, java-format
+msgid "§7Use §3/{0} ? {1} §7 to display previous page\n"
+msgstr ""
+
+msgid "saves documentation of the commands to a file"
+msgstr ""
+
+#, java-format
+msgid "Wrote documentation to {0}"
+msgstr ""
+
+#, java-format
+msgid "§4Error writing documentation: {0}"
+msgstr ""
+
+msgid "Command"
+msgstr ""
+
+msgid "Permission"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+#, java-format
+msgid "§f{0}x §7{1}"
+msgstr ""
+
+#, java-format
+msgid "§7{0}"
+msgstr ""
+
+msgid "d"
+msgstr ""
+
+msgid "h"
+msgstr ""
+
+msgid "m"
+msgstr ""
+
+msgid "s"
+msgstr ""
+
+#, java-format
+msgid "{0,number,0}:{1,number,00}.{2,number,000}"
+msgstr ""
+
+msgid "main structure command"
+msgstr ""
+
+msgid "loads a predefined structure"
+msgstr ""
+
+msgid "Unable to execute this command as anything but a player"
+msgstr ""
+
+#, java-format
+msgid "Loaded structure {0} into position {1}"
+msgstr ""
+
+#, java-format
+msgid "Failed to paste structure {0}"
+msgstr ""
+
+msgid "loads a structure from a file"
+msgstr ""
+
+#, java-format
+msgid "Failed to paste structure {0}: {1}"
+msgstr ""
+
+msgid "shows information about a structure"
+msgstr ""
+
+#, java-format
+msgid "Structure found {0}"
+msgstr ""
+
+#, java-format
+msgid "Failed to locate structure {0}"
+msgstr ""
+
+msgid "saves a structure"
+msgstr ""
+
+#, java-format
+msgid "Successfully saved structure {0}"
+msgstr ""
+
+#, java-format
+msgid "Failed to save structure {0}"
+msgstr ""
+
+msgid "prints out debug-information about the NMS classes in play"
+msgstr ""

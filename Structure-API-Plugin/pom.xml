@@ -58,6 +58,27 @@
                             </replacements>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>cleanup-po-files</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                        <configuration>
+                            <basedir>${basedir}/src/main/po</basedir>
+                            <filesToInclude>*.po, *.pot</filesToInclude>
+                            <replacements>
+                                <replacement>
+                                    <token>#: .*\n</token>
+                                    <value/>
+                                </replacement>
+                                <replacement>
+                                    <token>"POT-Creation-Date:.*\n</token>
+                                    <value/>
+                                </replacement>
+                            </replacements>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -135,6 +156,82 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.rlf</groupId>
+                <artifactId>gettext-maven-plugin</artifactId>
+                <version>1.2.10</version>
+                <executions>
+                    <execution>
+                        <id>find-bukkit-utils-msgids</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>gettext</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>${project.parent.basedir}/bukkit-utils/src/main/java</sourceDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>find-msgids</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>gettext</goal>
+                        </goals>
+                        <configuration>
+                            <extraArgs>
+                                <arg>-j</arg>
+                            </extraArgs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>update-po-files</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>merge</goal>
+                        </goals>
+                        <configuration>
+                            <msgmergeCmd>${MSGMERGECMD}</msgmergeCmd>
+                            <extraArgs>
+                                <arg>-N</arg>
+                            </extraArgs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>clear-fuzzy</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>attrib</goal>
+                        </goals>
+                        <configuration>
+                            <extraArgs>
+                                <arg>--clear-fuzzy</arg>
+                                <arg>--empty</arg>
+                                <arg>--no-obsolete</arg>
+                            </extraArgs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>report-po-completion</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <msgfmtCmd>${MSGFMTCMD}</msgfmtCmd>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                    <javaVersion>2</javaVersion>
+                    <poDirectory>${project.basedir}/src/main/po</poDirectory>
+                    <targetBundle>dk.lockfuglsang.minecraft.structureapi.i18n.Messages</targetBundle>
+                    <outputFormat>properties</outputFormat>
+                    <extraArgs>
+                        <arg>--no-location</arg>
+                    </extraArgs>
+                </configuration>
             </plugin>
         </plugins>
         <resources>
