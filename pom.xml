@@ -20,8 +20,8 @@
         <!-- necessary for intellij to function -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <MSGFMTCMD>msgfmt</MSGFMTCMD>
-        <MSGMERGECMD>msgmerge</MSGMERGECMD>
+        <msgfmtCmd>msgfmt</msgfmtCmd>
+        <msgmergeCmd>msgmerge</msgmergeCmd>
     </properties>
 
 

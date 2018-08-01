@@ -191,7 +191,7 @@
                             <goal>merge</goal>
                         </goals>
                         <configuration>
-                            <msgmergeCmd>${MSGMERGECMD}</msgmergeCmd>
+                            <msgmergeCmd>${msgmergeCmd}</msgmergeCmd>
                             <extraArgs>
                                 <arg>-N</arg>
                             </extraArgs>
@@ -218,7 +218,7 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
-                            <msgfmtCmd>${MSGFMTCMD}</msgfmtCmd>
+                            <msgfmtCmd>${msgfmtCmd}</msgfmtCmd>
                         </configuration>
                     </execution>
                 </executions>
